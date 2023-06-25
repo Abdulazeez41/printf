@@ -7,61 +7,61 @@
  *	@format: va_arg arguments
  *	Return: 0
  */
-
 int _printf(const char *format, ...)
 {
 	va_list args;
+	int count = 0;
 
 	va_start(args, format);
-
-	int count = 0;/* To keep track of the number of characters printed*/
-
-	while (*format != '\0')
+	while (*format)
 	{
 		if (*format == '%')
 		{
-			format++;/* Move past the '%'*/
-			switch (*format)/* Check for conversion specifier*/
+			format++;
+			switch (*format)
 			{
 				case 'c':
-					{
-						char c = (char)va_arg(args, int);/* Print a single character */
-
-						_putchar(c);
-						count++;
-						break;
-					}
+					count += _putchar(va_arg(args, int));
+					break;
 				case 's':
-					{
-						char *str = va_arg(args, char *);/*Print a string*/
-
-						while (*str != '\0')
-						{
-							_putchar(*str);
-							str++;
-							count++;
-						}
-						break;
-					}
+					count += _pstr(va_arg(args, char *));
+					break;
 				case '%':
-					{
-						_putchar('%');/* Print a literal '%'*/
-						count++;
-						break;
-					}
-
+					count += _putchar('%');
+					break;
 				default:
-					break;/* Invalid conversion specifier, ignore*/
+					count += _putchar('%') + _putchar(*format);
+					break;
 			}
 		}
 		else
 		{
-			_putchar(*format);/* Regular character, print as is*/
-			count++;
+			count += _putchar(*format);
 		}
-		format++;  /* Move to the next character in the format string*/
+		format++;
 	}
 	va_end(args);
 	return (count);
 }
 
+/**
+ *	_pstr - Print a string
+ *	@str: String
+ *
+ *	Return: No of char
+ */
+int _pstr(char *str)
+{
+	int count = 0;
+
+	if (str)
+	{
+		while (*str)
+		{
+			count += _putchar(*str);
+			str++;
+		}
+	}
+
+	return (count);
+}
