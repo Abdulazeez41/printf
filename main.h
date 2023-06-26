@@ -1,4 +1,4 @@
-#ifndef _PRINT_F_ 
+#ifndef _PRINT_F_
 #define _PRINT_F_
 
 int _putchar(char);
