@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
+	int i = 0;
 
 	va_start(args, format);
 	while (*format)
@@ -21,27 +21,27 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					count += _putchar(va_arg(args, int));
+					i += _putchar(va_arg(args, int));
 					break;
 				case 's':
-					count += _pstr(va_arg(args, char *));
+					i += _pstr(va_arg(args, char *));
 					break;
 				case '%':
-					count += _putchar('%');
+					i += _putchar('%');
 					break;
 				default:
-					count += _putchar('%') + _putchar(*format);
+					i += _putchar('%') + _putchar(*format);
 					break;
 			}
 		}
 		else
 		{
-			count += _putchar(*format);
+			i += _putchar(*format);
 		}
 		format++;
 	}
 	va_end(args);
-	return (count);
+	return (i);
 }
 
 /**
@@ -52,16 +52,16 @@ int _printf(const char *format, ...)
  */
 int _pstr(char *str)
 {
-	int count = 0;
+	int i = 0;
 
 	if (str)
 	{
 		while (*str)
 		{
-			count += _putchar(*str);
+			i += _putchar(*str);
 			str++;
 		}
 	}
 
-	return (count);
+	return (i);
 }
