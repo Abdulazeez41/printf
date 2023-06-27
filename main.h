@@ -4,4 +4,6 @@
 int _putchar(char);
 int _printf(const char *format, ...);
 int _pstr(char *str);
-#endif
+int _pint(int n);
+
+#endif /* _PRINT_F_ */

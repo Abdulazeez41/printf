@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	int i = 0;
 
 	va_start(args, format);
-	while (*format)
+	for (; *format; format++)
 	{
 		if (*format == '%')
 		{
@@ -25,6 +25,10 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					i += _pstr(va_arg(args, char *));
+					break;
+				case 'd':
+				case 'i':
+					i += _pint(va_arg(args, int));
 					break;
 				case '%':
 					i += _putchar('%');
@@ -38,7 +42,6 @@ int _printf(const char *format, ...)
 		{
 			i += _putchar(*format);
 		}
-		format++;
 	}
 	va_end(args);
 	return (i);
