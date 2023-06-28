@@ -8,21 +8,22 @@
  */
 int _pint(int n)
 {
+	unsigned int div;
 	int i = 0;
-	unsigned int num;
 
 	if (n < 0)
 	{
 		i += _putchar('-');
-		num = -n;
+		div = -n;
 	}
-	else 
-		num = n;
+	else
+	{
+		div = n;
+	}
 
-	if (n / 10)
-		i += _pint(n / 10);
+	if (div / 10)
+		i += _pint(div / 10);
 
-	i += _putchar((num % 10) + '0');
+	i += _putchar((div % 10) + '0');
 	return (i);
 }
-

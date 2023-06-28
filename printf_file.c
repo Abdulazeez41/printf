@@ -1,4 +1,3 @@
-#include <stdarg.h>
 #include "main.h"
 
 /**
@@ -10,10 +9,10 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0;
+	int j = 0;
 
 	va_start(args, format);
-	for (; *format; format++)
+	for (; *format != '\0'; format++)
 	{
 		if (*format == '%')
 		{
@@ -21,50 +20,28 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					i += _putchar(va_arg(args, int));
+					j += _putchar(va_arg(args, int));
 					break;
 				case 's':
-					i += _pstr(va_arg(args, char *));
+					j += _pstr(va_arg(args, char *));
 					break;
 				case 'd':
 				case 'i':
-					i += _pint(va_arg(args, int));
+					j += _pint(va_arg(args, int));
 					break;
 				case '%':
-					i += _putchar('%');
+					j += _putchar('%');
 					break;
 				default:
-					i += _putchar('%') + _putchar(*format);
+					j += _putchar('%') + _putchar(*format);
 					break;
 			}
 		}
 		else
 		{
-			i += _putchar(*format);
+			j += _putchar(*format);
 		}
 	}
 	va_end(args);
-	return (i);
-}
-
-/**
- *	_pstr - Print a string
- *	@str: String
- *
- *	Return: No of char
- */
-int _pstr(char *str)
-{
-	int i = 0;
-
-	if (str)
-	{
-		while (*str)
-		{
-			i += _putchar(*str);
-			str++;
-		}
-	}
-
-	return (i);
+	return (j);
 }
