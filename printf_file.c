@@ -12,48 +12,60 @@ int _printf(const char *format, ...)
 	int j = 0;
 
 	va_start(args, format);
-	for (; *format != '\0'; format++)
+	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			switch (*format)
-			{
-				case 'c':
-					j += _putchar(va_arg(args, int));
-					break;
-				case 's':
-					j += _pStr(va_arg(args, char *));
-					break;
-				case 'd':
-				case 'i':
-					j += _pInt(va_arg(args, int));
-					break;
-				case 'u':
-					j += _pUnsigned(va_arg(args, unsigned int));
-					break;
-				case 'o':
-					j += _pUnsigned(va_arg(args, unsigned int));
-					break;
-				case 'x':
-					j += _pHex(va_arg(args, unsigned int));
-					break;
-				case 'X':
-					j += _pHex(va_arg(args, unsigned int));
-					break;
-				case '%':
-					j += _putchar('%');
-					break;
-				default:
-					j += _putchar('%') + _putchar(*format);
-					break;
-			}
+			j += _converter(args, *format);
 		}
 		else
 		{
 			j += _putchar(*format);
 		}
+		format++;
 	}
 	va_end(args);
 	return (j);
+}
+
+/**
+ *	_converter - convert specifiers
+ *	@args: va_list
+ *	@c: character input
+ *
+ *	Return: No of character
+ */
+int _converter(va_list args, char c)
+{
+	int i = 0;
+
+	switch (c)
+	{
+		case 'c':
+			i += _putchar(va_arg(args, int));
+			break;
+		case 's':
+			i += _pStr(va_arg(args, char *));
+			break;
+		case 'd':
+		case 'i':
+			i += _pInt(va_arg(args, int));
+			break;
+		case 'u':
+			i += _pUnsigned(va_arg(args, unsigned int));
+			break;
+		case 'o':
+		case 'x':
+		case 'X':
+			i += _pHex(va_arg(args, unsigned int));
+			break;
+		case '%':
+			i += _putchar('%');
+			break;
+		default:
+			i += _putchar('%') + _putchar(c);
+			break;
+	}
+	return (i);
 }

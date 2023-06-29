@@ -9,5 +9,6 @@ int _pStr(char *str);
 int _pInt(int i);
 int _pUnsigned(unsigned int num);
 int _pHex(unsigned int num);
+int _converter(va_list args, char c);
 
 #endif /* _PRINT_F_ */
