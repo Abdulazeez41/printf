@@ -5,9 +5,9 @@
 
 int _putchar(char);
 int _printf(const char *format, ...);
-int _pstr(char *str);
-int _pint(int i);
-int _perc(void);
-/*int _pchr();*/
+int _pStr(char *str);
+int _pInt(int i);
+int _pUnsigned(unsigned int num);
+int _pHex(unsigned int num);
 
 #endif /* _PRINT_F_ */

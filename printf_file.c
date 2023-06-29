@@ -23,11 +23,23 @@ int _printf(const char *format, ...)
 					j += _putchar(va_arg(args, int));
 					break;
 				case 's':
-					j += _pstr(va_arg(args, char *));
+					j += _pStr(va_arg(args, char *));
 					break;
 				case 'd':
 				case 'i':
-					j += _pint(va_arg(args, int));
+					j += _pInt(va_arg(args, int));
+					break;
+				case 'u':
+					j += _pUnsigned(va_arg(args, unsigned int));
+					break;
+				case 'o':
+					j += _pUnsigned(va_arg(args, unsigned int));
+					break;
+				case 'x':
+					j += _pHex(va_arg(args, unsigned int));
+					break;
+				case 'X':
+					j += _pHex(va_arg(args, unsigned int));
 					break;
 				case '%':
 					j += _putchar('%');

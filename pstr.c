@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- *	_pstr - Print a string
+ *	_pStr - Print a string
  *	@str: String
  *
  *	Return: No of char
  */
-int _pstr(char *str)
+int _pStr(char *str)
 {
 	int i;
 
